@@ -1,0 +1,296 @@
+/* Normalize css*/
+main {
+    display: block;
+}
+
+/* mobile first layout */
+body {
+    background-color: #c8b7a1;
+    font:
+        100%/1.5 Roboto,
+        sans-serif;
+    color: #4d5358;
+    margin: 0;
+}
+
+#wrap {
+    background: #ffeee2;
+    width: 100%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+/* HEADERS */
+header {
+    background-color: #4d5358;
+}
+
+.logo img {
+    max-width: 10em;
+    height: auto;
+}
+
+h1 {
+    display: flex;
+    text-shadow: 1px 1px 2px #c8b7a1;
+    justify-content: center;
+    margin: 0;
+}
+
+h2 {
+    font-weight: normal;
+    text-shadow: 1px 1px 2px #c8b7a1;
+    text-align: center;
+}
+
+/* NAV */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    padding: 2%;
+    border-bottom: 2px solid #bd6427;
+}
+
+nav li:last-child {
+    border-bottom: none;
+}
+
+nav a {
+    color: #d1814a;
+    font-size: 130%;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+main {
+    padding: 2em;
+}
+
+main h1 {
+    padding: 1%;
+    margin-bottom: 2%;
+    border-bottom: 2px solid #783100;
+}
+
+footer {
+    border-top: 2px solid #783100;
+    margin: 0 2%;
+    display: flex;
+    justify-content: center;
+    font-size: 90%;
+}
+
+footer,
+aside a {
+    color: #783100;
+}
+
+/* Reviews */
+.reviews {
+    display: grid;
+    gap: 1em;
+    margin-top: 1.2em;
+}
+
+.review-card {
+    background: rgba(0, 0, 0, 0.08);
+    padding: 1% 2%;
+    border-radius: 0.5em;
+}
+
+.review-card p {
+    margin: 0.3em 0;
+}
+
+.review-stars {
+    color: #f5a200;
+    font-size: 1.1em;
+    letter-spacing: 0.2em;
+}
+
+.reviewer {
+    font-style: italic;
+    font-size: 0.88em;
+    color: #404447;
+}
+
+/* About Us */
+.team-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1em;
+}
+
+/* Project Gallery */
+.gallery-section {
+    margin: 1em 0;
+}
+
+.gallery-section h2 {
+    border-bottom: solid #783100;
+    padding-bottom: 0.4em;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8em;
+    margin-top: 0.8em;
+}
+
+.gallery-item {
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(120, 49, 0, 0.27);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 10em;
+    display: block;
+    transition:
+        transform 0.4s ease,
+        filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-caption {
+    text-align: center;
+    font-size: 0.82em;
+    margin: 0.3em 0;
+    color: #ffeee2;
+    font-weight: bold;
+}
+
+/* Contact Us */
+.contact-intro {
+    margin: 2em;
+}
+
+.contact-form {
+    max-width: 36em;
+}
+
+.form-group {
+    margin-bottom: 1.3em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3em;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0.4em;
+    background: rgba(255, 255, 255, 0.33);
+    font-family: Roboto, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    min-height: 6em;
+    resize: vertical;
+}
+
+.btn-submit {
+    background: #783100;
+    color: #ffeee2;
+    border: none;
+    padding: 0.5em 2em;
+    font-size: 1em;
+    border-radius: 0.4em;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-family: Roboto, sans-serif;
+}
+
+.btn-submit:hover {
+    background: #404447;
+}
+
+/* mobile - up to 767px */
+/* Already implicitly mobile first */
+@media (max-width: 767px) {
+    nav li {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* tablet — 768px and up */
+@media (min-width: 768px) {
+    #wrap {
+        width: 90%;
+    }
+
+    /* nav changes to horizontal */
+    nav {
+        padding: 1%;
+    }
+
+    nav ul {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 12%;
+    }
+
+    nav li {
+        padding: 1% 2%;
+        border-bottom: none;
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* desktop — 1024px and up */
+@media (min-width: 1024px) {
+    #wrap {
+        width: 60%;
+    }
+
+    /* two-column layout: section + aside */
+    #container {
+        display: flex;
+        gap: 2em;
+    }
+
+    section {
+        flex: 2;
+    }
+
+    aside {
+        flex: 1;
+        border-left: 1px dashed #783100;
+        padding-left: 2em;
+        margin-top: 1em;
+    }
+
+    aside h2:first-child {
+        margin: 0;
+    }
+
+    .gallery-item img {
+        height: 15em;
+    }
+}

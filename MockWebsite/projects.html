@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--set viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--links to css -->
+    <link rel="stylesheet" href="main.css">
+    <!--link to google font-->
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <title>Project Gallery – Projex Renovations</title>
+  </head>
+  <body>
+    <div id="wrap">
+      <header>
+        <h1 class="logo"><img src="images/logo.png" alt="Projex renovations company logo"></h1>
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Project Gallery</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <h1>Project Gallery</h1>
+        <div id="container">
+          <section>
+            <p>Browse a selection of our recent work below. Click any photo to view it full-size.</p>
+            <!-- Finish Carpentry -->
+            <div class="gallery-section">
+              <div class="gallery-grid">
+                <div class="gallery-item">
+                  <img src="images/finishedkitch.jpg" alt="Custom kitchen cabinetry, countertops and lighting">
+                  <p class="gallery-caption">Custom Kitchen, Counters, and Lighting</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/whitekitch.jpg" alt="Custom kitchen cabinetry">
+                  <p class="gallery-caption">Custom Cabinetry</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/whiteniche.jpg" alt="Built-in shelving unit">
+                  <p class="gallery-caption">Built-In Shelving</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/nook.jpg" alt="Foyer Nook">
+                  <p class="gallery-caption">Foyer Nooks</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/walkin.jpg" alt="Walk-in closet">
+                  <p class="gallery-caption">Walk-in Closets</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/fireplace.jpg" alt="Fireplace rebuild">
+                  <p class="gallery-caption">Fireplaces</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/stairsfloor.jpg" alt="Flooring and Painting">
+                  <p class="gallery-caption">Flooring &amp; Painting</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/framing.jpg" alt="Structural wall removal and beam install">
+                  <p class="gallery-caption">Open Concept Conversion</p>
+                </div>
+                <div class="gallery-item">
+                  <img src="images/deckperg.jpg" alt="Cottage deck and pergola">
+                  <p class="gallery-caption">Cottage Decks and Pergolas</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Projex Renovations &nbsp;|&nbsp;
+          <a href="mailto:p_gortemaker@fanshaweonline.ca">info@projex.com</a> &nbsp;|&nbsp; (222) 222-2222
+        </p>
+      </footer>
+    </div>
+
+    <!-- Script for opening photo in new tab fullscreen -->
+    <script>
+      document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("click", () => {
+          window.open(img.src, "_blank");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!--set viewport-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!--links to css -->
+    <link rel="stylesheet" href="main.css">
+    <!--link to google font-->
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <title>Contact Us – Projex Renovations</title>
+  </head>
+
+  <body>
+    <div id="wrap">
+      <header>
+        <h1 class="logo">
+          <img src="images/logo.png" alt="Projex renovations company logo">
+        </h1>
+
+        <nav>
+          <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html">Project Gallery</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <h1>Book a Free Consultation</h1>
+
+        <div id="container">
+          <section>
+            <p class="contact-intro">
+              Ready to start your next project? Fill out the form below and we will reach out to schedule a free
+              consultation at your home.
+            </p>
+
+            <!-- Took a inspiration from INFO-3070 but decided against adding more Javascript than just the images -->
+            <form class="contact-form" action="#" method="post">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="(519) 555-0000">
+              </div>
+
+              <div class="form-group">
+                <label for="timeline">Desired Start Date</label>
+                <input type="date" id="timeline" name="timeline">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Tell Us About Your Project *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Describe your project goals, approximate size or scope, and any questions you have for us."
+                  required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Request My Free Consultation</button>
+            </form>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <p>
+          Projex Renovations &nbsp;|&nbsp; <a href="mailto:p_gortemaker@fanshaweonline.ca">info@projex.com</a> &nbsp;|&nbsp; (222)
+          222-2222
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
