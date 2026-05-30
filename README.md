@@ -1,1 +1,1 @@
-"#SchoolProjects" 
+SchoolProjects
