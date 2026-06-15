@@ -18,8 +18,12 @@ C++
         - Entire project made to spec from scratch. Includes the example unformatted csv file for testing.
 
     - Expression Evaluator
-        - This was a large project. Many files are not included because they were test code written by my professor or starting functioniality for the rest of what I wrote like token, tokenizer, variable and operand cpps/hpps.
-        - I can't include what I didn't write so unfortunately only a few files are available for viewing but I think this displays some of my more complex code.
+        - This was a large project.
+        Many files are not included because they were test code written by my professor or
+        starting functioniality for the rest of what I wrote like token, tokenizer,
+        variable and operand cpps/hpps.
+        - I can't include what I didn't write so unfortunately only a few files are
+        available for viewing but I think this displays some of my more complex code.
 
     - Fileusage CLI Project
         - This was written in semester 2 so the implementation is very repetative due to project scope.
