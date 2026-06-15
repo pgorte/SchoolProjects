@@ -17,7 +17,8 @@ C++
         - Final practical exam submission thus uncommented.
 
     - BinaryTreeProject
-        - Entire project made to spec from scratch. Includes the example unformatted csv file for testing.
+        - Entire project made to spec from scratch.
+            Includes the example unformatted csv file for testing.
 
     - Expression Evaluator
         - This was a large project.
