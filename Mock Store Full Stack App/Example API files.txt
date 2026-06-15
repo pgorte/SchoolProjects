@@ -1,0 +1,283 @@
+// ============================================================
+// BrandController.cs
+// API endpoint for retrieving all brands
+// ============================================================
+using Casestudy.DAL;
+using Casestudy.DAL.DAO;
+using Casestudy.DAL.DomainClasses;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Casestudy.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class BrandController : ControllerBase
+    {
+        readonly AppDbContext? _ctx;
+
+        // DbContext injected via dependency injection
+        public BrandController(AppDbContext context)
+        {
+            _ctx = context;
+        }
+
+        // GET: api/Brand - returns all brands
+        [HttpGet]
+        public async Task<ActionResult<List<Brand>>> Index()
+        {
+            BrandDAO dao = new(_ctx!);
+            List<Brand> allBrands = await dao.GetAll();
+            return allBrands;
+        }
+    }
+}
+
+
+// ============================================================
+// HomeController.cs
+// Check endpoint to confirm the server is running
+// ============================================================
+using Microsoft.AspNetCore.Mvc;
+
+namespace Casestudy.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class HomeController : ControllerBase
+    {
+        // GET: api/Home - server status check
+        [HttpGet]
+        public ActionResult<string> Index()
+        {
+            return "If you see this the server is up and running!";
+        }
+    }
+}
+
+
+// ============================================================
+// ProductController.cs
+// API endpoint for retrieving products by brand
+// ============================================================
+using Casestudy.DAL;
+using Casestudy.DAL.DAO;
+using Casestudy.DAL.DomainClasses;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Casestudy.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController : ControllerBase
+    {
+        readonly AppDbContext? _ctx;
+
+        // DbContext injected via dependency injection
+        public ProductController(AppDbContext context)
+        {
+            _ctx = context;
+        }
+
+        // GET: api/Product/{catid} - returns all products for a brand
+        [HttpGet]
+        [Route("{catid}")]
+        public async Task<ActionResult<List<Product>>> Index(int catid)
+        {
+            ProductDAO dao = new(_ctx!);
+            List<Product> itemsForBrand = await dao.GetAllByBrand(catid);
+            return itemsForBrand;
+        }
+    }
+}
+
+
+// ============================================================
+// AppDbContext.cs
+// EF Core database context exposing the Brand and Product tables
+// ============================================================
+using Microsoft.EntityFrameworkCore;
+using Casestudy.DAL.DomainClasses;
+
+namespace Casestudy.DAL
+{
+    public class AppDbContext : DbContext
+    {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        public virtual DbSet<Brand>? Brands { get; set; }
+        public virtual DbSet<Product>? Products { get; set; }
+    }
+}
+
+
+// ============================================================
+// BrandDAO.cs
+// Data access object for Brand queries
+// ============================================================
+using Casestudy.DAL.DomainClasses;
+using Microsoft.EntityFrameworkCore;
+
+namespace Casestudy.DAL.DAO
+{
+    public class BrandDAO
+    {
+        private readonly AppDbContext _db;
+
+        public BrandDAO(AppDbContext ctx)
+        {
+            _db = ctx;
+        }
+
+        // Retrieve all brands from the database
+        public async Task<List<Brand>> GetAll()
+        {
+            return await _db.Brands!.ToListAsync();
+        }
+    }
+}
+
+
+// ============================================================
+// ProductDAO.cs
+// Data access object for Product queries
+// ============================================================
+using Casestudy.DAL.DomainClasses;
+using Microsoft.EntityFrameworkCore;
+
+namespace Casestudy.DAL.DAO
+{
+    public class ProductDAO
+    {
+        private readonly AppDbContext _db;
+
+        public ProductDAO(AppDbContext ctx)
+        {
+            _db = ctx;
+        }
+
+        // Retrieve all products belonging to a specific brand
+        public async Task<List<Product>> GetAllByBrand(int id)
+        {
+            return await _db.Products!.Where(item => item.Brand!.Id == id).ToListAsync();
+        }
+    }
+}
+
+
+// ============================================================
+// Brand.cs
+// Brand entity - maps to the Brands table
+// ============================================================
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Casestudy.DAL.DomainClasses
+{
+    public class Brand
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required]
+        [StringLength(200)]
+        public string? Name { get; set; }
+    }
+}
+
+
+// ============================================================
+// Product.cs
+// Product entity - maps to the Products table with a FK to Brand
+// ============================================================
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Casestudy.DAL.DomainClasses
+{
+    public class Product
+    {
+        [Key]
+        [StringLength(15)]
+        public string? Id { get; set; }
+
+        // Navigation property and foreign key to Brand
+        [ForeignKey("BrandId")]
+        public Brand? Brand { get; set; }
+        [Required]
+        public int BrandId { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string? ProductName { get; set; }
+
+        [Required]
+        [StringLength(20)]
+        public string? GraphicName { get; set; }
+
+        // Prices stored using SQL money type
+        [Required]
+        [Column(TypeName = "money")]
+        public decimal CostPrice { get; set; }
+
+        [Required]
+        [Column(TypeName = "money")]
+        public decimal MSRP { get; set; }
+
+        // Inventory tracking
+        [Required]
+        public int QtyOnHand { get; set; }
+
+        [Required]
+        public int QtyOnBackOrder { get; set; }
+
+        [StringLength(2000)]
+        public string? Description { get; set; }
+    }
+}
+
+
+// ============================================================
+// Program.cs
+// Application entry point - configures services and middleware
+// ============================================================
+using Microsoft.EntityFrameworkCore;
+using Casestudy.DAL;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// SQL Server LocalDB connection from appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(c => c.UseSqlServer(connectionString));
+
+// Controllers and Swagger/OpenAPI
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// CORS policy to allow requests from the Vue dev server
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyAllowSpecificOrigins,
+    builder =>
+    {
+        builder.WithOrigins("http://localhost:9000").AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
+var app = builder.Build();
+
+// Enable Swagger UI in development only
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
