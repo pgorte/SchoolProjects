@@ -8,8 +8,10 @@ C++
             - cHashTable.hpp from scratch.
             - cSongify.cpp
                 - cSongify.hpp defined what I had to do, I just needed to implement the functions.
-            - cSongify.hpp just at the beginning to allow everything to work with the cHashTable data structure I built.
-        - cPerson and cSong were premade structures that we had to mold everything else around so they are not included.
+            - cSongify.hpp just at the beginning to allow everything to work with the cHashTable data
+                structure I built.
+        - cPerson and cSong were premade structures that we had to mold everything else around so
+            they are not included.
 
     - BinaryDecisionTree
         - Final practical exam submission thus uncommented.
@@ -19,11 +21,11 @@ C++
 
     - Expression Evaluator
         - This was a large project.
-        Many files are not included because they were test code written by my professor or
-        starting functioniality for the rest of what I wrote like token, tokenizer,
-        variable and operand cpps/hpps.
+            Many files are not included because they were test code written by my professor or
+            starting functioniality for the rest of what I wrote like token, tokenizer,
+            variable and operand cpps/hpps.
         - I can't include what I didn't write so unfortunately only a few files are
-        available for viewing but I think this displays some of my more complex code.
+            available for viewing but I think this displays some of my more complex code.
 
     - Fileusage CLI Project
         - This was written in semester 2 so the implementation is very repetative due to project scope.
